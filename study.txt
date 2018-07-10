@@ -1,0 +1,22 @@
+1.RabbitMQ注解方式配置说明
+https://blog.csdn.net/zh350229319/article/details/52230674
+
+2.spring单元测试
+https://www.ibm.com/developerworks/cn/java/j-lo-springunitest/index.html
+
+3.spring中使用属性文件
+
+
+
+
+后续：
+2.RabbitMQ消息队列-VirtualHost与权限管理
+https://blog.csdn.net/super_rd/article/details/71191851?utm_source=itdadao&utm_medium=referral
+
+3.rabbitmq如何知道消息有没有发送队列中
+https://www.jianshu.com/p/4112d78a8753
+
+
+4.使用spring集合rabbitmq与使用springboot来做是有区别的
+4.1 springboot使用@EnableRabbit
+4.2 spring需要使用配置文件来配置监听器

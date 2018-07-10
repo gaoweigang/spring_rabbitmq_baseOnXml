@@ -1,0 +1,15 @@
+[INFO] 2018-07-10 16:25:00.654 [main] [com.gwg.demo.sender.HelloSender]18 - Sender : hello gwg Tue Jul 10 16:25:00 CST 2018 
+[INFO] 2018-07-10 16:27:18.293 [main] [com.gwg.demo.sender.HelloSender]17 - rabbitTemplate :org.springframework.amqp.rabbit.core.RabbitTemplate@26adfd2d 
+[INFO] 2018-07-10 16:27:18.296 [main] [com.gwg.demo.sender.HelloSender]19 - Sender : hello gwg Tue Jul 10 16:27:18 CST 2018 
+[INFO] 2018-07-10 16:28:08.400 [main] [com.gwg.demo.sender.HelloSender]17 - rabbitTemplate :org.springframework.amqp.rabbit.core.RabbitTemplate@7561db12 
+[INFO] 2018-07-10 16:30:37.948 [main] [com.gwg.demo.sender.HelloSender]19 - rabbitTemplate :org.springframework.amqp.rabbit.core.RabbitTemplate@7c3fdb62 
+[INFO] 2018-07-10 16:30:37.951 [main] [com.gwg.demo.sender.HelloSender]21 - Sender : hello gwg Tue Jul 10 16:30:37 CST 2018 
+[INFO] 2018-07-10 16:42:41.229 [main] [com.gwg.demo.sender.HelloSender]-1 - rabbitTemplate :org.springframework.amqp.rabbit.core.RabbitTemplate@24b52d3e 
+[INFO] 2018-07-10 16:42:41.235 [main] [com.gwg.demo.sender.HelloSender]-1 - Sender : hello gwg Tue Jul 10 16:42:41 CST 2018 
+[INFO] 2018-07-10 16:42:45.360 [main] [com.gwg.demo.sender.HelloSender]24 - rabbitTemplate :org.springframework.amqp.rabbit.core.RabbitTemplate@6950ed69 
+[INFO] 2018-07-10 16:42:45.363 [main] [com.gwg.demo.sender.HelloSender]26 - Sender : hello gwg Tue Jul 10 16:42:45 CST 2018 
+[INFO] 2018-07-10 16:43:03.337 [main] [com.gwg.demo.sender.HelloSender]24 - rabbitTemplate :org.springframework.amqp.rabbit.core.RabbitTemplate@6e9c413e 
+[INFO] 2018-07-10 16:43:03.343 [main] [com.gwg.demo.sender.HelloSender]26 - Sender : hello gwg Tue Jul 10 16:43:03 CST 2018 
+[INFO] 2018-07-10 16:48:51.687 [main] [com.gwg.demo.sender.HelloSender]24 - rabbitTemplate :org.springframework.amqp.rabbit.core.RabbitTemplate@26fb628 
+[INFO] 2018-07-10 16:48:51.692 [main] [com.gwg.demo.sender.HelloSender]26 - Sender : hello gwg Tue Jul 10 16:48:51 CST 2018 
+[INFO] 2018-07-10 16:48:56.625 [org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer#0-1] [com.gwg.demo.receiver.HelloReceiver]12 - Receiver  : hello gwg Tue Jul 10 16:48:51 CST 2018 

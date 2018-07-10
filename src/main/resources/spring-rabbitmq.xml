@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/rabbit
+    http://www.springframework.org/schema/rabbit/spring-rabbit-1.5.xsd">
+
+	<!-- spring的属性加载器，加载properties文件中的属性 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>config.properties</value>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+   <!-- 链接 -->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="${rabbitmq.host}"
+                               port="${rabbitmq.port}"
+                               username="${rabbitmq.username}"
+                               password="${rabbitmq.password}"
+                               virtual-host="${rabbitmq.virtual-host}"/>
+    
+    <rabbit:admin connection-factory="connectionFactory"/>
+    
+    <!-- json转换器，消息可以自动根据转换器转换格式，不配置时默认为java序列化，可以自行配置 -->
+    <!-- <bean id="messageConverter" class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" /> -->
+    
+
+  
+    <!-- 如果在rabbitmq控制台创建了交换器，队列，并将交换器与队列绑定了，这部分配置是不是可以不要 -->
+    <!-- 队列 -->
+    <rabbit:queue name="${rabbitmq.queue}" durable="true" exclusive="false" auto-delete="false" />
+    <!-- 交换器以及 交换器与队列绑定 -->
+    <rabbit:direct-exchange name="${rabbitmq.direct.exchange}">
+        <rabbit:bindings>
+            <rabbit:binding queue="${rabbitmq.queue}" key="${rabbitmq.queue}" />
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+   
+    
+    <!-- 生产者配置 -->
+    <!-- retryTemplate为连接失败时的重发队列所用的templete -->
+	<bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
+		<property name="backOffPolicy">
+			<bean class="org.springframework.retry.backoff.ExponentialBackOffPolicy">
+				<property name="initialInterval" value="500" />
+				<property name="multiplier" value="10.0" />
+				<property name="maxInterval" value="10000" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- exchange为direct模式 -->
+	<rabbit:template id="template" 
+		connection-factory="connectionFactory" reply-timeout="2000"
+		retry-template="retryTemplate" exchange="${rabbitmq.direct.exchange}" />
+
+    <bean id="helloSender" class="com.gwg.demo.sender.HelloSender">
+         <!-- 使用@Autowired注解 -->
+         <!-- <property name="rabbitTemplate" ref="template"></property> -->
+    </bean>
+    
+		
+		
+	    
+    <!--消费者配置 监听-->
+    <bean id="helloReceiver" class="com.gwg.demo.receiver.HelloReceiver"/>
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener ref="helloReceiver" method="consumeMessage" queue-names="${rabbitmq.queue}"/>
+    </rabbit:listener-container>
+
+</beans>
