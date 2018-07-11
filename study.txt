@@ -8,6 +8,9 @@ https://www.ibm.com/developerworks/cn/java/j-lo-springunitest/index.html
 
 
 
+4.消息转换
+
+
 
 后续：
 2.RabbitMQ消息队列-VirtualHost与权限管理
